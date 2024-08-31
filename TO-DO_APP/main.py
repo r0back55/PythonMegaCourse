@@ -1,16 +1,29 @@
-todos = []
-
 while True:
     user_action = input("Type 'add', 'edit', 'complete', 'show' or 'exit': ")
 
     match user_action:
-
         case "add":
-            todo = input("Enter a TODO item: ")
+            todo = input("Enter a TODO item: ") + "\n"
+
+            file = open('todos.txt', 'r')
+            todos = file.readlines()
+            file.close()
+
             todos.append(todo)
 
-        case "show" | "display":  # it is 'or' operator
+            file = open('todos.txt', 'w')
+            file.writelines(todos)
+            file.close()
+
+        case "show":
+            file = open('todos.txt', 'r')
+            todos = file.readlines()
+            file.close()
+
+            # new_todos = [item.strip("\n") for item in todos]
+
             for index, item in enumerate(todos):
+                item = item.strip("\n")
                 print(f"{index+1}. {item.title()}")
 
         case "edit":
@@ -27,6 +40,6 @@ while True:
             break
 
         case _:
-            print("Hey, you entered unknown command. Try again!")
+            print("Hey, you have entered unknown command. Try again!")
 
 print("Bye")

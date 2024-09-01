@@ -1,5 +1,6 @@
 clean
 make
-cook
 play
 come
+clean
+make a bed

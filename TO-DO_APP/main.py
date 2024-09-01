@@ -5,22 +5,17 @@ while True:
         case "add":
             todo = input("Enter a TODO item: ") + "\n"
 
-            file = open('todos.txt', 'r')
-            todos = file.readlines()
-            file.close()
+            with open('todos.txt', 'r') as file:
+                todos = file.readlines()
 
             todos.append(todo)
 
-            file = open('todos.txt', 'w')
-            file.writelines(todos)
-            file.close()
+            with open('todos.txt', 'w') as file:
+                file.writelines(todos)
 
         case "show":
-            file = open('todos.txt', 'r')
-            todos = file.readlines()
-            file.close()
-
-            # new_todos = [item.strip("\n") for item in todos]
+            with open('todos.txt', 'r') as file:
+                todos = file.readlines()
 
             for index, item in enumerate(todos):
                 item = item.strip("\n")
@@ -28,13 +23,23 @@ while True:
 
         case "edit":
             number = int(input("Number of the TODO to edit: "))
-            print(todos[number-1])
+            number = number - 1
+            with open('todos.txt', 'r') as file:
+                todos = file.readlines()
+
             new_todo = input("Enter edited TODO item: ")
-            todos[number - 1] = new_todo
+            todos[number] = new_todo + '\n'
+            with open('todos.txt', 'w') as file:
+                file.writelines(todos)
 
         case "complete":
-            r_item = int(input("Item number to remove: "))
-            todos.remove(todos[r_item-1])
+            number = int(input("Item number to remove: "))
+            with open('todos.txt', 'r') as file:
+                todos = file.readlines()
+
+            todos.remove(todos[number - 1])
+            with open('todos.txt', 'w') as file:
+                file.writelines(todos)
 
         case "exit":
             break
@@ -42,4 +47,4 @@ while True:
         case _:
             print("Hey, you have entered unknown command. Try again!")
 
-print("Bye")
+print("Exiting the TODO app. Goodbye!")

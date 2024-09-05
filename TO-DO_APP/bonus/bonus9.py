@@ -4,6 +4,8 @@ password = input("Enter new password: ")
 
 result = {}
 
+# Special characters set
+special_characters = "!@#$%^&*()-+?_=,<>/"
 
 # --------------------------------
 # checking for length
@@ -11,7 +13,6 @@ if len(password) >= 8:
     result["length"] = True
 else:
     result["length"] = False
-
 
 # --------------------------------
 # checking for digits
@@ -22,7 +23,6 @@ for char in password:
 
 result["digit"] = digit
 
-
 # --------------------------------
 # checking for upper case
 upper_case = False
@@ -32,6 +32,14 @@ for char in password:
 
 result["upper_case"] = upper_case
 
+# --------------------------------
+# checking for special characters
+special_char = False
+for char in password:
+    if char in special_characters:
+        special_char = True
+
+result["special_char"] = special_char
 
 # --------------------------------
 if all(result.values()):

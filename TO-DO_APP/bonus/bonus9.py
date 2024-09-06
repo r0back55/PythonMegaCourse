@@ -7,6 +7,7 @@ result = {}
 # Special characters set
 special_characters = "!@#$%^&*()-+?_=,<>/"
 
+
 # --------------------------------
 # checking for length
 if len(password) >= 8:
@@ -23,6 +24,7 @@ for char in password:
 
 result["digit"] = digit
 
+
 # --------------------------------
 # checking for upper case
 upper_case = False
@@ -31,6 +33,7 @@ for char in password:
         upper_case = True
 
 result["upper_case"] = upper_case
+
 
 # --------------------------------
 # checking for special characters
@@ -41,8 +44,18 @@ for char in password:
 
 result["special_char"] = special_char
 
+
 # --------------------------------
+# Final check and feedback
 if all(result.values()):
     print("Strong Password")
 else:
-    print("Weak password")
+    print("Weak Password. Issues with:")
+    if not result["length"]:
+        print("- Password should be at least 8 characters long.")
+    if not result["digit"]:
+        print("- Password should contain at least one digit.")
+    if not result["upper_case"]:
+        print("- Password should contain at least one uppercase letter.")
+    if not result["special_char"]:
+        print("- Password should contain at least one special character.")

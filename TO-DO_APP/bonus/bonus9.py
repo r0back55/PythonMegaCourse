@@ -2,60 +2,39 @@
 
 password = input("Enter new password: ")
 
-result = {}
+# Initialize result variables
+has_digit = False
+has_upper_case = False
+has_special_char = False
 
-# Special characters set
 special_characters = "!@#$%^&*()-+?_=,<>/"
 
-
-# --------------------------------
-# checking for length
-if len(password) >= 8:
-    result["length"] = True
-else:
-    result["length"] = False
-
-# --------------------------------
-# checking for digits
-digit = False
+# Check conditions in one loop
 for char in password:
     if char.isdigit():
-        digit = True
+        has_digit = True
+    elif char.isupper():
+        has_upper_case = True
+    elif char in special_characters:
+        has_special_char = True
 
-result["digit"] = digit
+    # Early exit if all conditions are met
+    if has_digit and has_upper_case and has_special_char:
+        break
 
+# Checking the length after the loop
+is_valid_length = len(password) >= 8
 
-# --------------------------------
-# checking for upper case
-upper_case = False
-for char in password:
-    if char.isupper():
-        upper_case = True
-
-result["upper_case"] = upper_case
-
-
-# --------------------------------
-# checking for special characters
-special_char = False
-for char in password:
-    if char in special_characters:
-        special_char = True
-
-result["special_char"] = special_char
-
-
-# --------------------------------
 # Final check and feedback
-if all(result.values()):
+if is_valid_length and has_digit and has_upper_case and has_special_char:
     print("Strong Password")
 else:
     print("Weak Password. Issues with:")
-    if not result["length"]:
+    if not is_valid_length:
         print("- Password should be at least 8 characters long.")
-    if not result["digit"]:
+    if not has_digit:
         print("- Password should contain at least one digit.")
-    if not result["upper_case"]:
+    if not has_upper_case:
         print("- Password should contain at least one uppercase letter.")
-    if not result["special_char"]:
+    if not has_special_char:
         print("- Password should contain at least one special character.")

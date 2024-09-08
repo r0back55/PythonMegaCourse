@@ -2,6 +2,7 @@
 
 password = input("Enter new password: ")
 
+
 # Initialize result variables
 has_digit = False
 has_upper_case = False
@@ -9,21 +10,30 @@ has_special_char = False
 
 special_characters = "!@#$%^&*()-+?_=,<>/"
 
+
+# Asking user to customize special characters:
+custom_special_characters = input("Enter allowed special characters (leave empty for default): ")
+if not custom_special_characters:
+    custom_special_characters = special_characters
+
+
 # Check conditions in one loop
 for char in password:
     if char.isdigit():
         has_digit = True
     elif char.isupper():
         has_upper_case = True
-    elif char in special_characters:
+    elif char in custom_special_characters:
         has_special_char = True
 
     # Early exit if all conditions are met
     if has_digit and has_upper_case and has_special_char:
         break
 
+
 # Checking the length after the loop
 is_valid_length = len(password) >= 8
+
 
 # Final check and feedback
 if is_valid_length and has_digit and has_upper_case and has_special_char:

@@ -1,6 +1,1 @@
-clean
-make
-play
-come
-clean
-make a bed
+Make a bedClean yuor room

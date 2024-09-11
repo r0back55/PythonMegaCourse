@@ -7,7 +7,7 @@ password = input("Enter new password: ")
 has_digit = False
 has_upper_case = False
 has_special_char = False
-has_lower_case = False  # New variable for lowercase check
+has_lower_case = False
 
 
 special_characters = "!@#$%^&*()-+?_=,<>/"

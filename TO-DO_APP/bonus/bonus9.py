@@ -9,7 +9,6 @@ has_upper_case = False
 has_special_char = False
 has_lower_case = False
 
-
 special_characters = "!@#$%^&*()-+?_=,<>/"
 
 
